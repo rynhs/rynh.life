@@ -35,3 +35,69 @@
       color: #fff;
       user-select: none;
       -webkit-font-smoothing: antialiased;
+    }
+    .dot-ring {
+      position: relative;
+      width: clamp(44px, 12vw, 56px);
+      height: clamp(44px, 12vw, 56px);
+    }
+    .dot {
+      position: absolute;
+      width: clamp(5px, 1.6vw, 7px);
+      height: clamp(5px, 1.6vw, 7px);
+      border-radius: 50%;
+      background: #fff;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0 0;
+      will-change: transform, opacity;
+      animation: orbit 1.4s cubic-bezier(0.55, 0, 0.45, 1) infinite;
+      opacity: 0;
+    }
+    .dot:nth-child(1) { animation-delay: 0s;    --angle: 0deg;   }
+    .dot:nth-child(2) { animation-delay: 0.14s; --angle: 72deg;  }
+    .dot:nth-child(3) { animation-delay: 0.28s; --angle: 144deg; }
+    .dot:nth-child(4) { animation-delay: 0.42s; --angle: 216deg; }
+    .dot:nth-child(5) { animation-delay: 0.56s; --angle: 288deg; }
+    @keyframes orbit {
+      0%   { opacity: 0; transform: rotate(calc(var(--angle) + 0deg))   translateX(22px) scale(0.6); }
+      15%  { opacity: 1; transform: rotate(calc(var(--angle) + 54deg))  translateX(22px) scale(1);   }
+      85%  { opacity: 1; transform: rotate(calc(var(--angle) + 306deg)) translateX(22px) scale(1);   }
+      100% { opacity: 0; transform: rotate(calc(var(--angle) + 360deg)) translateX(22px) scale(0.6); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wordmark">rynhs</div>
+  <div class="dot-ring">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+  <script>
+    setTimeout(function () {
+      document.body.classList.add('fade-out');
+      var ua = navigator.userAgent || '';
+      var isIOS     = /iPhone|iPad|iPod/i.test(ua);
+      var isAndroid = /Android/i.test(ua);
+      setTimeout(function () {
+        if (isIOS) {
+          window.location = 'vsco://user/ryanhosseini';
+          setTimeout(function () {
+            window.location = 'https://apps.apple.com/app/vsco/id588013838';
+          }, 1500);
+        } else if (isAndroid) {
+          window.location = 'vsco://user/ryanhosseini';
+          setTimeout(function () {
+            window.location = 'https://play.google.com/store/apps/details?id=com.vsco.cam';
+          }, 1500);
+        } else {
+          window.location = 'https://vsco.co/ryanhosseini';
+        }
+      }, 600);
+    }, 1800);
+  </script>
+</body>
+</html>
